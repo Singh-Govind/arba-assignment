@@ -65,3 +65,5 @@ app.listen(PORT, async () => {
   await dbConnection();
   console.log(`server started at ${PORT}`);
 });
+
+module.exports = app;
