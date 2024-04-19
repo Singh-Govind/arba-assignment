@@ -8,6 +8,7 @@ import AddCategory from "./AddCategory";
 import FilterCategory from "./FilterCategory";
 
 const buttonStyle = {
+  textTransform: "none",
   backgroundColor: "#00AAC3",
   color: "white",
   boxShadow: "0",
@@ -70,7 +71,11 @@ function Categories() {
       <Box>
         <ListData fetchDatas={fetchDatas} data={categories} />
       </Box>
-      <AddCategory open={open} handleClose={handleClose} />
+      <AddCategory
+        open={open}
+        handleClose={handleClose}
+        fetchDatas={fetchDatas}
+      />
       <FilterCategory
         open={openFilter}
         handleClose={handleFilterClose}

@@ -11,6 +11,10 @@ User.login = async (req, res) => {
 
     let user = await UserModel.findOne({ userName });
 
+    if (!user) {
+      return res.status(404).json({ msg: "user not found" });
+    }
+
     let isPassCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPassCorrect) {
@@ -26,7 +30,9 @@ User.login = async (req, res) => {
     };
 
     res.json({ msg: "user", user });
-  } catch (e) {}
+  } catch (e) {
+    res.status(500).json({ msg: "Internal Server Error", err: e.message });
+  }
 };
 
 User.register = async (req, res) => {

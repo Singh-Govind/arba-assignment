@@ -32,6 +32,7 @@ const textField = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   padding: "0.1rem 3rem",
@@ -82,6 +83,7 @@ export default function AddCategory({ open, handleClose, fetchDatas }) {
       });
       res = await res.json();
       fetchDatas();
+      setData({ id: "", slug: "", image: "", name: "" });
       handleClose();
     } catch (e) {
       console.log("err", e.message);

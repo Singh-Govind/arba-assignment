@@ -8,6 +8,7 @@ import AddProduct from "./AddProduct";
 import FilterProducts from "./FilterProducts";
 
 const buttonStyle = {
+  textTransform: "none",
   backgroundColor: "#00AAC3",
   color: "white",
   boxShadow: "0",

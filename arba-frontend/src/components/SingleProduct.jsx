@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCarts } from "../store/cartSlice";
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   boxShadow: "0",
@@ -76,7 +77,6 @@ function SingleProduct({ item }) {
       <Card
         sx={{
           boxShadow: "none",
-          // border: "1px solid lightgray",
           borderRadius: "0",
         }}
       >
@@ -100,14 +100,32 @@ function SingleProduct({ item }) {
           boxShadow: "0 2px 4px rgba(0,0,0,0.5)",
         }}
       >
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            mb: "0",
+          }}
+        >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ mt: "0", mb: "0.5rem" }}
+        >
           {description}
         </Typography>
-        <Typography variant="body1" color="text.primary">
-          Price: {price}
+        <Typography
+          variant="body1"
+          color="text.primary"
+          sx={{
+            color: "#00AAC3",
+            fontSize: "1.2rem",
+          }}
+        >
+          Rs. {price}
         </Typography>
         {!isAdded && (
           <Button
@@ -127,9 +145,47 @@ function SingleProduct({ item }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              mt: "1rem",
             }}
           >
-            <Button
+            <Box
+              sx={{
+                backgroundColor: "#00AAC3",
+                color: "white",
+                padding: "0.2rem 2.9rem",
+                cursor: "pointer",
+                fontWeight: "bold",
+                fontSize: "1.5rem",
+              }}
+              onClick={decrementCart}
+            >
+              -
+            </Box>
+            <Box
+              sx={{
+                backgroundColor: "#00AAC3",
+                color: "white",
+                padding: "0.2rem 1rem",
+                fontWeight: "bold",
+                fontSize: "1.5rem",
+              }}
+            >
+              {count}
+            </Box>
+            <Box
+              sx={{
+                backgroundColor: "#00AAC3",
+                color: "white",
+                padding: "0.2rem 2.9rem",
+                cursor: "pointer",
+                fontWeight: "bold",
+                fontSize: "1.5rem",
+              }}
+              onClick={incrementCart}
+            >
+              +
+            </Box>
+            {/* <Button
               fullWidth
               onClick={decrementCart}
               variant="contained"
@@ -154,7 +210,7 @@ function SingleProduct({ item }) {
               sx={buttonStyle}
             >
               +
-            </Button>
+            </Button> */}
           </Box>
         )}
       </Box>

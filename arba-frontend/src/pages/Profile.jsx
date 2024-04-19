@@ -15,6 +15,7 @@ const imageStyle = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   color: "white",
@@ -80,7 +81,9 @@ function Profile() {
       });
       res = await res.json();
       if (res.msg === "profile updated") {
-        dispatch(setUser({ ...user, avatar: data.imageUrl }));
+        let obj = { ...user, avatar: data.imageUrl };
+        dispatch(setUser(obj));
+        localStorage.setItem("user", JSON.stringify(obj));
         setSelectedFile(null);
       }
     } catch (error) {

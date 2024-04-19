@@ -8,6 +8,7 @@ import { baseUrl } from "../main";
 import UploadForm from "./ImageUpload";
 
 const style = {
+  textTransform: "none",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -32,6 +33,7 @@ const textField = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   padding: "0.1rem 3rem",
@@ -84,12 +86,12 @@ export default function EditCategory({ open, handleClose, item, fetchDatas }) {
       });
       res = await res.json();
       fetchDatas();
-      // handleClose();
+      handleClose();
       setData({
-        id: item._id,
-        slug: item.slug,
-        image: item.image,
-        name: item.name,
+        id: "",
+        slug: "",
+        image: "",
+        name: "",
       });
     } catch (e) {
       console.log("err", e.message);

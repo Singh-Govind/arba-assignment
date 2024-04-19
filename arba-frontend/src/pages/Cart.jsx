@@ -11,7 +11,7 @@ function Carts() {
   return (
     <Box>
       <Navbar />
-      <Typography variant="h4">Products</Typography>
+      <Typography variant="h4">My Carts</Typography>
       <Grid sx={{ mt: "1rem" }} container spacing={2}>
         {products?.map((item) => (
           <Grid key={item._id} item xs={3}>
@@ -31,13 +31,13 @@ function Carts() {
             textDecoration: "0",
             fontSize: "1.2rem",
             marginLeft: "auto",
-            backgroundColor: "blue",
+            backgroundColor: "#00AAC3",
             color: "white",
             padding: "0.5rem 1.5rem",
           }}
           to="/products"
         >
-          All Products {">>"}
+          Checkout
         </Link>
       </Box>
     </Box>

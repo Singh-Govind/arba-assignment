@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { baseUrl } from "../main";
+import { Button } from "@mui/material";
 
 const UploadForm = ({ setData, setImage }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileName, setFileName] = useState("");
 
   const handleFileChange = (event) => {
+    const file = event.target.files[0];
     setSelectedFile(event.target.files[0]);
+    setFileName(file ? file.name : "");
   };
 
   const handleSubmit = async () => {
@@ -28,7 +32,6 @@ const UploadForm = ({ setData, setImage }) => {
       }
 
       const data = await response.json();
-      // setData((prev) => ({ ...prev, image: data.imageUrl }));
       setImage(data.imageUrl);
       console.log("Image uploaded successfully:", data);
     } catch (error) {
@@ -37,9 +40,68 @@ const UploadForm = ({ setData, setImage }) => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
+    <div
+      style={{
+        marginTop: "2rem",
+        // marginBottom: "-0.8rem",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
+      <div
+        style={{
+          borderBottom: "2px solid #00AAC3",
+          flexGrow: "1",
+        }}
+      >
+        <input
+          accept="image/*"
+          style={{ display: "none" }}
+          id="contained-button-file"
+          type="file"
+          onChange={handleFileChange}
+        />
+        <label
+          htmlFor="contained-button-file"
+          sx={{ cursor: "pointer", borderBottom: "1px solid black" }}
+        >
+          <Button
+            variant="contained"
+            component="span"
+            sx={{
+              backgroundColor: "#00AAC3",
+              color: "white",
+              boxShadow: "0",
+              borderRadius: "0",
+              border: "0",
+              padding: "0.5rem 1rem",
+              "&:hover": {
+                backgroundColor: "#00AAC3",
+                boxShadow: "none",
+              },
+            }}
+          >
+            Choose File
+          </Button>
+        </label>
+        {fileName && <span>{fileName}</span>}
+      </div>
+
       <button
+        style={{
+          backgroundColor: "#00AAC3",
+          color: "white",
+          boxShadow: "0",
+          borderRadius: "0",
+          border: "0",
+          padding: "0.5rem 1rem",
+          marginLeft: "0.2rem",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "#00AAC3",
+            boxShadow: "none",
+          },
+        }}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

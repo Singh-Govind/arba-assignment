@@ -32,6 +32,7 @@ const textField = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   padding: "0.1rem 3rem",
@@ -97,6 +98,14 @@ export default function EditProduct({ open, handleClose, item, fetchDatas }) {
       });
       res = await res.json();
       fetchDatas();
+      setData({
+        title: "",
+        description: "",
+        image: "",
+        price: "",
+        categoryId: "",
+        ownerId: "",
+      });
       handleClose();
     } catch (e) {
       console.log("err", e.message);

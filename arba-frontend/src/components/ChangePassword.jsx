@@ -24,6 +24,7 @@ const style = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   padding: "0.1rem 3rem",

@@ -32,6 +32,7 @@ const textField = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   backgroundColor: "#00AAC3",
   padding: "0.1rem 3rem",
   color: "white",

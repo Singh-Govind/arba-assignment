@@ -17,6 +17,7 @@ const style = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
   backgroundColor: "#00AAC3",
   padding: "0.1rem 3rem",
@@ -72,6 +73,7 @@ function EditProfile({ open, handleClose, user: userProps }) {
       res = await res.json();
       if (res.msg === "profile updated") {
         dispatch(setUser(user));
+        localStorage.setItem("user", JSON.stringify(user));
         handleClose();
       }
     } catch (e) {
