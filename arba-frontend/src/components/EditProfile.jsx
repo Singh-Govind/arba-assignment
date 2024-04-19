@@ -2,6 +2,7 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
+import { baseUrl } from "../main";
 
 const style = {
   position: "absolute",
@@ -61,7 +62,7 @@ function EditProfile({ open, handleClose, user: userProps }) {
 
   const updateProfile = async () => {
     try {
-      let res = await fetch(`http://localhost:8000/user/update-profile`, {
+      let res = await fetch(`${baseUrl}/user/update-profile`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -7,6 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { baseUrl } from "../main";
 import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
@@ -90,7 +91,7 @@ function ChangePassword({ open, handleClose, user: userProps }) {
 
   const updatePassword = async () => {
     try {
-      let res = await fetch(`http://localhost:8000/user/update-password`, {
+      let res = await fetch(`${baseUrl}/user/update-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
