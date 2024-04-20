@@ -6,8 +6,8 @@ This document outlines the design and functionality of a web application for use
 
 [Checkout the live version](https://arba-fe.vercel.app/)
 
-username :- user
-password :- 123
+- username :- user
+- password :- 123
 
 ## User Flow
 
