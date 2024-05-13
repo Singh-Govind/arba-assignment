@@ -6,13 +6,31 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import { tableCellClasses } from "@mui/material/TableCell";
 import { baseUrl } from "../main";
 import EditCategory from "./EditCategory";
 import EditProduct from "./EditProduct";
 
-const borderStyle = {
-  border: "1px solid rgba(0, 0, 0, 1)",
-};
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 const spanStyle = {
   fontWeight: "bold",
@@ -53,43 +71,29 @@ export default function ListData({ data, isProduct = false, fetchDatas }) {
   };
 
   return (
-    <TableContainer
-      sx={{ borderRadius: "0", boxShadow: "0" }}
-      component={Paper}
-    >
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
-          <TableRow
-            sx={{
-              backgroundColor: "#4b95d4",
-            }}
-          >
-            <TableCell sx={borderStyle}>Image</TableCell>
-            <TableCell sx={borderStyle}>
-              {isProduct ? "Title" : "Name"}
-            </TableCell>
-            <TableCell sx={borderStyle}>
-              {isProduct ? "Price" : "Slug"}
-            </TableCell>
-            <TableCell sx={borderStyle}>Actions</TableCell>
+          <TableRow>
+            <StyledTableCell>Image</StyledTableCell>
+            <StyledTableCell>{isProduct ? "Title" : "Name"}</StyledTableCell>
+            <StyledTableCell>{isProduct ? "Price" : "Slug"}</StyledTableCell>
+            <StyledTableCell>Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow
-              key={item._id}
-              sx={{ border: "1px solid rgba(0, 0, 0, 0.12)" }}
-            >
-              <TableCell sx={borderStyle}>
+            <StyledTableRow key={item._id}>
+              <StyledTableCell>
                 <img src={item.image} width="50px" height="50px" />
-              </TableCell>
-              <TableCell sx={borderStyle}>
+              </StyledTableCell>
+              <StyledTableCell>
                 {isProduct ? item.title : item.name}
-              </TableCell>
-              <TableCell sx={borderStyle}>
+              </StyledTableCell>
+              <StyledTableCell>
                 {isProduct ? item.price : item.slug}
-              </TableCell>
-              <TableCell sx={borderStyle}>
+              </StyledTableCell>
+              <StyledTableCell>
                 <span
                   onClick={() => {
                     setEditData(item);
@@ -103,7 +107,7 @@ export default function ListData({ data, isProduct = false, fetchDatas }) {
                 <span style={spanStyle} onClick={() => deleteData(item._id)}>
                   Delete
                 </span>
-              </TableCell>
+              </StyledTableCell>
               {isProduct ? (
                 <EditProduct
                   open={open}
@@ -119,7 +123,7 @@ export default function ListData({ data, isProduct = false, fetchDatas }) {
                   fetchDatas={fetchDatas}
                 />
               )}
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>

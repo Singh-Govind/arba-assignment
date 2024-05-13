@@ -3,17 +3,15 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Button, TextField } from "@mui/material";
-import { useSelector } from "react-redux";
 import { baseUrl } from "../main";
 import UploadForm from "./ImageUpload";
 
 const style = {
-  textTransform: "none",
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
+  width: { xs: "95%", md: 500 },
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -22,26 +20,26 @@ const style = {
 
 const textField = {
   "& .MuiInput-underline:before": {
-    borderBottom: `2px solid #00AAC3`,
+    borderBottom: `2px solid custom.main`,
   },
   "& .MuiInput-underline:after": {
-    borderBottom: `2px solid #00AAC3`,
+    borderBottom: `2px solid custom.main`,
   },
   "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-    borderBottom: `2px solid #00AAC3`,
+    borderBottom: `2px solid custom.main`,
   },
 };
 
 const buttonStyle = {
   textTransform: "none",
   mt: "1rem",
-  backgroundColor: "#00AAC3",
+  backgroundColor: "custom.main",
   padding: "0.1rem 3rem",
   color: "white",
   boxShadow: "0",
   borderRadius: "0",
   "&:hover": {
-    backgroundColor: "#00AAC3",
+    backgroundColor: "custom.secondary",
     boxShadow: "none",
   },
 };
@@ -157,12 +155,12 @@ export default function EditCategory({ open, handleClose, item, fetchDatas }) {
             <Button
               sx={{
                 mt: "1rem",
-                backgroundColor: "#00AAC3",
+                backgroundColor: "custom.main",
                 color: "white",
                 boxShadow: "0",
                 borderRadius: "0",
                 "&:hover": {
-                  backgroundColor: "#00AAC3",
+                  backgroundColor: "custom.secondary",
                   boxShadow: "none",
                 },
               }}

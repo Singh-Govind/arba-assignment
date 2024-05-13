@@ -50,7 +50,7 @@ const UploadForm = ({ setData, setImage }) => {
     >
       <div
         style={{
-          borderBottom: "2px solid #00AAC3",
+          borderBottom: "2px solid custom.main",
           flexGrow: "1",
         }}
       >
@@ -69,14 +69,14 @@ const UploadForm = ({ setData, setImage }) => {
             variant="contained"
             component="span"
             sx={{
-              backgroundColor: "#00AAC3",
+              backgroundColor: "custom.main",
               color: "white",
               boxShadow: "0",
               borderRadius: "0",
               border: "0",
               padding: "0.5rem 1rem",
               "&:hover": {
-                backgroundColor: "#00AAC3",
+                backgroundColor: "custom.secondary",
                 boxShadow: "none",
               },
             }}
@@ -89,7 +89,7 @@ const UploadForm = ({ setData, setImage }) => {
 
       <button
         style={{
-          backgroundColor: "#00AAC3",
+          backgroundColor: "#292929",
           color: "white",
           boxShadow: "0",
           borderRadius: "0",
@@ -98,7 +98,7 @@ const UploadForm = ({ setData, setImage }) => {
           marginLeft: "0.2rem",
           cursor: "pointer",
           "&:hover": {
-            backgroundColor: "#00AAC3",
+            backgroundColor: "#43454A",
             boxShadow: "none",
           },
         }}

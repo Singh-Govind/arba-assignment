@@ -9,7 +9,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
+  width: { xs: "98%", md: 500 },
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -17,14 +17,15 @@ const style = {
 };
 
 const buttonStyle = {
+  textTransform: "none",
   mt: "1rem",
-  backgroundColor: "#00AAC3",
+  backgroundColor: "custom.main",
   padding: "0.1rem 3rem",
   color: "white",
   boxShadow: "0",
   borderRadius: "0",
   "&:hover": {
-    backgroundColor: "#00AAC3",
+    backgroundColor: "custom.secondary",
     boxShadow: "none",
   },
 };

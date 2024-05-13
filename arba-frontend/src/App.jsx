@@ -3,7 +3,8 @@ import "./App.css";
 
 import AllRoutes from "./pages/AllRoutes";
 import useLocalUser from "./hooks/useLocalUser";
-import { Box } from "@mui/material";
+import { Box, ThemeProvider } from "@mui/material";
+import { theme } from "../therme";
 
 function App() {
   const { loginFromLocalStorage } = useLocalUser();
@@ -13,9 +14,11 @@ function App() {
   }, []);
 
   return (
-    <Box>
-      <AllRoutes />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <AllRoutes />
+      </Box>
+    </ThemeProvider>
   );
 }
 

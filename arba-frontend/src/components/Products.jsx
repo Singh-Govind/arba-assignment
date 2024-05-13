@@ -1,20 +1,21 @@
 import { Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import ListData from "./ListData";
+// import ListData from "./ListData";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../store/productSlice";
 import { baseUrl } from "../main";
 import AddProduct from "./AddProduct";
 import FilterProducts from "./FilterProducts";
+import ListData from "./ListData";
 
 const buttonStyle = {
   textTransform: "none",
-  backgroundColor: "#00AAC3",
+  backgroundColor: "custom.main",
   color: "white",
   boxShadow: "0",
-  borderRadius: "0",
+  borderRadius: "25px",
   "&:hover": {
-    backgroundColor: "#00AAC3",
+    backgroundColor: "custom.secondary",
     boxShadow: "none",
   },
 };

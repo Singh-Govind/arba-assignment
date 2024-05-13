@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  Container,
   IconButton,
   InputAdornment,
   TextField,
@@ -13,13 +14,13 @@ import { baseUrl } from "../main";
 
 const textField = {
   "& .MuiInput-underline:before": {
-    borderBottom: `2px solid #00AAC3`,
+    borderBottom: `2px solid custom.main`,
   },
   "& .MuiInput-underline:after": {
-    borderBottom: `2px solid #00AAC3`,
+    borderBottom: `2px solid custom.main`,
   },
   "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-    borderBottom: `2px solid #00AAC3`,
+    borderBottom: `2px solid custom.main`,
   },
 };
 
@@ -83,191 +84,194 @@ function Register() {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        minHeight: "100lvh",
-      }}
-    >
+    <Container>
       <Box
         sx={{
-          minWidth: "50%",
-          backgroundImage: "url('/left2.png')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      ></Box>
-      <Box
-        sx={{
-          minWidth: "50%",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          paddingBlock: "2rem",
+          minHeight: "100lvh",
         }}
       >
         <Box
           sx={{
-            width: "100px",
-            height: "100px",
-            backgroundColor: "#00AAC3",
-            borderRadius: "50%",
-            marginBottom: "1rem",
+            display: { xs: "none", md: "block" },
+            minWidth: "50%",
+            backgroundImage: "url('/left2.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
           }}
         ></Box>
-        <h1>ARBA</h1>
-        <Typography
-          sx={{ maxWidth: "400px", textAlign: "center", marginTop: "1rem" }}
-        >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus,
-          hic.
-        </Typography>
         <Box
           sx={{
-            maxWidth: "400px",
+            minWidth: { xs: "100%", md: "50%" },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            paddingBlock: "2rem",
           }}
         >
-          <form onSubmit={handleSubmit}>
-            <TextField
-              sx={textField}
-              variant="standard"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={user.userName}
-              onChange={(e) => enterUserValue(e, "userName")}
-            />
-            <TextField
-              sx={textField}
-              variant="standard"
-              margin="normal"
-              required
-              fullWidth
-              id="fullname"
-              label="Fullname"
-              name="fullname"
-              autoComplete="fullname"
-              autoFocus
-              value={user.fullName}
-              onChange={(e) => enterUserValue(e, "fullName")}
-            />
-            <TextField
-              sx={textField}
-              variant="standard"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              autoFocus
-              value={user.email}
-              onChange={(e) => enterUserValue(e, "email")}
-            />
-            <TextField
-              sx={textField}
-              variant="standard"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type={showPassword.p ? "text" : "password"}
-              id="password"
-              autoComplete="current-password"
-              value={user.password}
-              onChange={(e) => enterUserValue(e, "password")}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => handlePasswordVisibility("p")}
-                      edge="end"
-                    >
-                      {showPassword.p ? <FaRegEye /> : <FaRegEyeSlash />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-
-            <TextField
-              sx={textField}
-              variant="standard"
-              margin="normal"
-              required
-              fullWidth
-              name="confirm-password"
-              label="Confirm Password"
-              type={showPassword.cp ? "text" : "password"}
-              id="confirm-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => handlePasswordVisibility("cp")}
-                      edge="end"
-                    >
-                      {showPassword.cp ? <FaRegEye /> : <FaRegEyeSlash />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            {user.password !== confirmPassword && (
-              <Typography color="red">password didn't match</Typography>
-            )}
-            <Button
-              sx={{
-                mt: "1rem",
-                backgroundColor: "#00AAC3",
-                borderRadius: "20px",
-                "&:hover": {
-                  backgroundColor: "#00AAC3",
-                },
-              }}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="large"
-            >
-              Register
-            </Button>
-          </form>
-
           <Box
             sx={{
-              mt: "2rem",
+              width: "100px",
+              height: "100px",
+              backgroundColor: "custom.main",
+              borderRadius: "50%",
+              marginBottom: "1rem",
+            }}
+          ></Box>
+          <h1>ARBA</h1>
+          <Typography
+            sx={{ maxWidth: "400px", textAlign: "center", marginTop: "1rem" }}
+          >
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus,
+            hic.
+          </Typography>
+          <Box
+            sx={{
+              maxWidth: "400px",
             }}
           >
-            <Typography>
-              Already have an account?{" "}
-              <Link
-                style={{
-                  textDecoration: "none",
-                  color: "#00AAC3",
+            <form onSubmit={handleSubmit}>
+              <TextField
+                sx={textField}
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+                value={user.userName}
+                onChange={(e) => enterUserValue(e, "userName")}
+              />
+              <TextField
+                sx={textField}
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                id="fullname"
+                label="Fullname"
+                name="fullname"
+                autoComplete="fullname"
+                autoFocus
+                value={user.fullName}
+                onChange={(e) => enterUserValue(e, "fullName")}
+              />
+              <TextField
+                sx={textField}
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                autoFocus
+                value={user.email}
+                onChange={(e) => enterUserValue(e, "email")}
+              />
+              <TextField
+                sx={textField}
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type={showPassword.p ? "text" : "password"}
+                id="password"
+                autoComplete="current-password"
+                value={user.password}
+                onChange={(e) => enterUserValue(e, "password")}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => handlePasswordVisibility("p")}
+                        edge="end"
+                      >
+                        {showPassword.p ? <FaRegEye /> : <FaRegEyeSlash />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
                 }}
-                to="/login"
+              />
+
+              <TextField
+                sx={textField}
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                name="confirm-password"
+                label="Confirm Password"
+                type={showPassword.cp ? "text" : "password"}
+                id="confirm-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => handlePasswordVisibility("cp")}
+                        edge="end"
+                      >
+                        {showPassword.cp ? <FaRegEye /> : <FaRegEyeSlash />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              {user.password !== confirmPassword && (
+                <Typography color="red">password didn't match</Typography>
+              )}
+              <Button
+                sx={{
+                  mt: "1rem",
+                  backgroundColor: "custom.main",
+                  borderRadius: "20px",
+                  "&:hover": {
+                    backgroundColor: "custom.secondary",
+                  },
+                }}
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                size="large"
               >
-                Login
-              </Link>
-            </Typography>
+                Register
+              </Button>
+            </form>
+
+            <Box
+              sx={{
+                mt: "2rem",
+              }}
+            >
+              <Typography>
+                Already have an account?{" "}
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "#292929",
+                  }}
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 }
 

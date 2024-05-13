@@ -2,11 +2,13 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
+import { IoMdCloudUpload } from "react-icons/io";
 import TC from "../components/TC";
 import EditProfile from "../components/EditProfile";
 import ChangePassword from "../components/ChangePassword";
 import { setUser } from "../store/userSlice";
 import { baseUrl } from "../main";
+import Footer from "../components/Footer";
 
 const imageStyle = {
   width: "100%",
@@ -17,12 +19,12 @@ const imageStyle = {
 const buttonStyle = {
   textTransform: "none",
   mt: "1rem",
-  backgroundColor: "#00AAC3",
+  backgroundColor: "custom.main",
   color: "white",
   boxShadow: "0",
   borderRadius: "0",
   "&:hover": {
-    backgroundColor: "#00AAC3",
+    backgroundColor: "custom.secondary",
     boxShadow: "none",
   },
 };
@@ -32,6 +34,7 @@ function Profile() {
   const [openUpdate, setOpenUpdate] = useState(false);
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -58,6 +61,7 @@ function Profile() {
     formData.append("image", selectedFile);
 
     try {
+      setLoading(true);
       const response = await fetch(`${baseUrl}/upload`, {
         method: "POST",
         body: formData,
@@ -86,8 +90,10 @@ function Profile() {
         localStorage.setItem("user", JSON.stringify(obj));
         setSelectedFile(null);
       }
+      setLoading(false);
     } catch (error) {
       console.error("Error uploading image:", error);
+      setLoading(false);
     }
   };
 
@@ -111,24 +117,71 @@ function Profile() {
       >
         <Box
           sx={{
-            width: "200px",
-            height: "200px",
+            width: "250px",
+            height: "250px",
             mb: "1rem",
             position: "relative",
+            border: "1px solid lightgray",
           }}
         >
-          <img style={imageStyle} src={user.avatar} alt={user.userName} />
+          {!loading ? (
+            <img style={imageStyle} src={user.avatar} alt={user.userName} />
+          ) : (
+            <img
+              style={imageStyle}
+              src="/loading.gif"
+              alt="image upload loading"
+            />
+          )}
           <Box
             sx={{
               position: "absolute",
-              backgroundColor: "lightgray",
+              backgroundColor: "rgba(0,0,0,0.3)",
               bottom: 0,
               width: "100%",
               textAlign: "center",
               cursor: "pointer",
+              paddgin: "0",
             }}
           >
-            <input type="file" onChange={handleFileChange} />
+            <div>
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                id="contained-button-file"
+                type="file"
+                onChange={handleFileChange}
+              />
+              <label
+                htmlFor="contained-button-file"
+                sx={{
+                  cursor: "pointer",
+                  borderBottom: "1px solid black",
+                  background: "transparent",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  component="span"
+                  fullWidth
+                  sx={{
+                    backgroundColor: "inherit",
+                    color: "white",
+                    boxShadow: "0",
+                    borderRadius: "0",
+                    border: "0",
+                    "&:hover": {
+                      backgroundColor: "inherit",
+                      boxShadow: "none",
+                    },
+                  }}
+                >
+                  <IoMdCloudUpload size={"1.5rem"} color="custom.main" />
+                </Button>
+              </label>
+            </div>
+
+            {/* File upload end */}
           </Box>
         </Box>
         <Typography>{user.userName}</Typography>
@@ -167,6 +220,7 @@ function Profile() {
         handleClose={handleCloseChangePassword}
         user={user}
       />
+      <Footer />
     </Box>
   );
 }

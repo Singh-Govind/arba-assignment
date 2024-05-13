@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Carousell from "../components/Carousell";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import TC from "../components/TC";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../store/productSlice";
 import { baseUrl } from "../main";
 import { setCategories } from "../store/categorySlice";
 import ListProducts from "../components/ListProducts";
+import Footer from "../components/Footer";
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -50,23 +51,20 @@ function Home() {
   }, [user]);
 
   return (
-    <Box sx={{ mb: "2rem" }}>
+    <Box>
       <Navbar />
-      <Box
-        sx={{
-          maxHeight: "400px",
-        }}
-      >
-        <Carousell />
-      </Box>
-      <Box
-        sx={{
-          mt: "4rem",
-        }}
-      >
-        <ListProducts />
-      </Box>
-      <TC open={open} handleClose={handleClose} />
+      <Carousell />
+      <Container>
+        <Box
+          sx={{
+            mt: "4rem",
+          }}
+        >
+          <ListProducts />
+        </Box>
+        <TC open={open} handleClose={handleClose} />
+      </Container>
+      <Footer />
     </Box>
   );
 }

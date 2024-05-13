@@ -11,8 +11,8 @@ function ListProducts() {
     <Box>
       <Typography variant="h4">Products</Typography>
       <Grid sx={{ mt: "1rem" }} container spacing={2}>
-        {products?.map((item) => (
-          <Grid key={item._id} item xs={3}>
+        {products?.slice(0, 8).map((item) => (
+          <Grid key={item._id} item xs={12} sm={6} md={3}>
             <SingleProduct item={item} />
           </Grid>
         ))}
@@ -29,10 +29,11 @@ function ListProducts() {
             textDecoration: "0",
             fontSize: "1.2rem",
             marginLeft: "auto",
-            backgroundColor: "#00AAC3",
+            backgroundColor: "#292929",
             color: "white",
-            padding: "0.5rem 1.5rem",
-            marginTop: "2rem",
+            padding: "0.5rem 2.5rem",
+            marginTop: "3rem",
+            borderRadius: "20px",
           }}
           to="/products"
         >

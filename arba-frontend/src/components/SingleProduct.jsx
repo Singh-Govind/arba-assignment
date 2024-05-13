@@ -1,34 +1,30 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
+import { Typography, Button, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCarts } from "../store/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const buttonStyle = {
+  backgroundColor: "custom.main",
+  fontWeight: "400",
   textTransform: "none",
-  mt: "1rem",
-  backgroundColor: "#00AAC3",
-  boxShadow: "0",
-  borderRadius: "0",
+  borderRadius: "20px",
+  boxShadow: "none",
   "&:hover": {
-    backgroundColor: "#00AAC3",
+    backgroundColor: "custom.secondary",
     boxShadow: "none",
   },
 };
 
-function SingleProduct({ item }) {
+function SingleProduct2({ item }) {
   const { title, description, price, image } = item;
 
   const [isAdded, setIsAdded] = useState(false);
   const [count, setCount] = useState(0);
 
   const { carts } = useSelector((store) => store.carts);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -73,149 +69,112 @@ function SingleProduct({ item }) {
   }, [carts, incrementCart]);
 
   return (
-    <Box sx={{ position: "relative" }}>
-      <Card
-        sx={{
-          boxShadow: "none",
-          borderRadius: "0",
-        }}
-      >
-        <CardMedia component="img" height="200" image={image} alt={title} />
-        <CardContent
-          sx={{
-            height: "10rem",
-            border: "0",
-            boxShadow: "0",
+    <Box
+      sx={{
+        border: "1px solid lightgray",
+        borderRadius: "5px",
+        "&:hover": {
+          transform: "scale(1.05)",
+          transition: "0.8s",
+        },
+      }}
+    >
+      <Box>
+        <img
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            maxHeight: "150px",
+            borderRadius: "5px",
           }}
-        ></CardContent>
-      </Card>
+          src={image}
+          alt={title}
+        />
+      </Box>
       <Box
         sx={{
-          position: "absolute",
-          bottom: 25,
-          backgroundColor: "white",
-          left: 15,
-          width: "90%",
-          padding: "1rem",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.5)",
+          padding: "0.5rem 0.25rem",
         }}
       >
         <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
           sx={{
-            mb: "0",
+            fontSize: "1.3rem",
           }}
+          component="h2"
         >
           {title}
         </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mt: "0", mb: "0.5rem" }}
-        >
-          {description}
-        </Typography>
-        <Typography
-          variant="body1"
-          color="text.primary"
+        <Box
           sx={{
-            color: "#00AAC3",
-            fontSize: "1.2rem",
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "0.8rem",
+            color: "gray",
+            padding: "0 0.21rem",
           }}
         >
-          Rs. {price}
-        </Typography>
-        {!isAdded && (
-          <Button
-            fullWidth
-            onClick={handleAddToCart}
-            variant="contained"
-            color="primary"
-            sx={buttonStyle}
-          >
-            Add to Cart
-          </Button>
-        )}
-
-        {isAdded && (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              mt: "1rem",
-            }}
-          >
-            <Box
-              sx={{
-                backgroundColor: "#00AAC3",
-                color: "white",
-                padding: "0.2rem 2.9rem",
-                cursor: "pointer",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-              }}
-              onClick={decrementCart}
-            >
-              -
-            </Box>
-            <Box
-              sx={{
-                backgroundColor: "#00AAC3",
-                color: "white",
-                padding: "0.2rem 1rem",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-              }}
-            >
-              {count}
-            </Box>
-            <Box
-              sx={{
-                backgroundColor: "#00AAC3",
-                color: "white",
-                padding: "0.2rem 2.9rem",
-                cursor: "pointer",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-              }}
-              onClick={incrementCart}
-            >
-              +
-            </Box>
-            {/* <Button
-              fullWidth
-              onClick={decrementCart}
-              variant="contained"
-              color="primary"
-              sx={buttonStyle}
-            >
-              -
-            </Button>
-            <span
-              style={{
-                fontWeight: "bold",
-                marginInline: "1rem",
-              }}
-            >
-              {count}
-            </span>
-            <Button
-              fullWidth
-              onClick={incrementCart}
-              variant="contained"
-              color="primary"
-              sx={buttonStyle}
-            >
-              +
-            </Button> */}
-          </Box>
-        )}
+          <Typography>{description}</Typography>
+          <Typography>Rs. {price}</Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mt: "0.5rem",
+          }}
+        >
+          {!isAdded && (
+            <>
+              <Button
+                onClick={handleAddToCart}
+                sx={buttonStyle}
+                variant="contained"
+              >
+                Add to Card
+              </Button>
+              <Button
+                onClick={() => {
+                  handleAddToCart();
+                  navigate("/carts");
+                }}
+                sx={buttonStyle}
+                variant="contained"
+              >
+                Buy Now
+              </Button>
+            </>
+          )}
+          {isAdded && (
+            <>
+              <Button
+                onClick={decrementCart}
+                sx={buttonStyle}
+                variant="contained"
+              >
+                -
+              </Button>
+              <span
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                {count}
+              </span>
+              <Button
+                onClick={incrementCart}
+                sx={buttonStyle}
+                variant="contained"
+              >
+                +
+              </Button>
+            </>
+          )}
+        </Box>
       </Box>
     </Box>
   );
 }
 
-export default SingleProduct;
+export default SingleProduct2;
