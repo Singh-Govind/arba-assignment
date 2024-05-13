@@ -4,7 +4,7 @@
 
 This document outlines the design and functionality of a web application for user authentication, product management, and shopping cart functionality.
 
-[Checkout the live version](https://arba-fe.vercel.app/)
+[Checkout the live version](https://arba-f.vercel.app/)
 
 - username :- user
 - password :- 123
