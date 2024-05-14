@@ -11,7 +11,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { store } from "./store/index.js";
 
-export const baseUrl = "https://arba-be.cyclic.app";
+export const baseUrl = "https://arba-assignment-frvi.onrender.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
