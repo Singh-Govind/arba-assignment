@@ -28,8 +28,8 @@ const textField = {
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("user");
+  const [password, setPassword] = useState("123");
   const { user } = useSelector((store) => store.user);
 
   const dispatch = useDispatch();
